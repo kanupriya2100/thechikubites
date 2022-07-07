@@ -1,0 +1,90 @@
+<%-include("../partials/header")%>
+<%-include("../partials/navbar")%>
+
+<%
+clickHandler = function() {
+  console.log("gdfctygv")
+ var d= document.getElementById('contactForm')
+ d.style.display='block'
+}
+%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<main class="container">
+    <%-include("../partials/flash")%>
+    <h1 class="display-5 mb-3" >My Cart</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <% for(let item of user.cart) {%>
+                <div class="card mx-auto mb-3 " style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="<%= item.img %>" class="img-fluid rounded-start" alt="..." style="height: 150px; width: auto;" >
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= item.name %></h5>
+                          <h5 class="card-title">&#x20B9 :<%=item.price %></h5>
+                          <form action="/cart/<%=item._id%>/remove?_method=DELETE" method="POST">
+                          <button type="submit" class="btn btn-small btn-danger">Remove</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            <%}%>
+        </div>
+        <div class="col-lg-4" >
+        <div>
+            <%let totalAmount=0%>
+            <h1 class="display-6">Bill</h1>
+            <ul class="list-group">
+            <% for(let item of user.cart) {%>
+            <% totalAmount+=item.price%>
+                <li class="list-group-item"><span class="fw-bold"><%=item.name%></span>:&#x20B9<span><%=item.price%></span></li>
+            <%}%>
+            <li class="list-group-item">Total Amount : &#x20B9<span><%=totalAmount %></span></li>
+        </ul>
+        <div class="my-3" >
+       
+            <button class="btn btn-success btn-small " onclick="document.getElementById('contactForm').style.visibility='visible'">Proceed To Pay</button>
+      
+    </div>
+    <div id="contactForm" style="visibility: hidden;">  
+      <div class="row">
+        <div class="col-50">
+          <h3>Billing Address</h3>
+          <div><label for="fname"><i class="fa fa-user"></i> Full Name</label></div>
+          <div><input type="text" id="fname" name="firstname" placeholder="John M. Doe"></div>
+          <div><label for="email"><i class="fa fa-mobile"></i> Mobile Number :</label></div>
+         <div><input type="text" id="email" name="email" placeholder="john@example.com"></div>
+          <div><label for="adr"><i class="fa fa-address-card-o"></i> Address</label></div>
+          <div><input type="text" id="adr" name="address" ></div>
+          <div><a class="btn btn-success btn-small " href="#" onclick="swal({
+            title: 'GOOD JOB',
+            text: 'Congratulations! Your order is placed',
+            icon: 'success',
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              window.location.replace(`http://localhost:2323/`)
+            }
+             else {
+              window.location.replace(`http://localhost:2323/`)    
+            }
+          });">Place Order</a></div>
+        </div>
+    </div>
+        </div>
+        </div>
+
+    </div>
+
+</main>
+
+
+
+
+<%-include("../partials/footer")%>

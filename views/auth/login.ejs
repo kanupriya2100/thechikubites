@@ -1,0 +1,45 @@
+<%-include("../partials/header")%>
+<%-include("../partials/navbar")%>
+<%-include("../partials/logo")%>
+    
+
+<main class="container" >
+    
+    <div class="row ">
+        <div class="col-md-6 mx-auto" >
+            <%-include("../partials/flash")%>
+            <h1 class="dispaly-6">Login</h1>
+            <form action="/login" method="POST">
+               <!-- <div class="mb-3 mt-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="personal">
+                    <label class="form-check-label" for="inlineRadio1">Personal Account</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="business">
+                    <label class="form-check-label" for="inlineRadio2">Business Account</label>
+                  </div>
+                </div>-->
+            <div class="mb-3">
+<label for="name" class="form-label">Username</label>
+<input type="text" class="form-control" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                            </div>
+            
+            <button type="submit" class="btn btn-success btn-small">Login</button>
+        </form>
+        </div>
+    </div>
+
+</main>
+
+
+
+
+
+
+
+<%-include("../partials/footer")%>
